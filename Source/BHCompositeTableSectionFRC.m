@@ -7,7 +7,7 @@
 //
 
 #import "BHCompositeTableSectionFRC.h"
-#import "BHNIBTools.h"
+#import "BHBlockTableUtils.h"
 
 @implementation BHCompositeTableSectionFRC
 
@@ -21,18 +21,18 @@
 @synthesize forceFullReloadOnDataChange;
 
 + (BHCompositeTableSectionFRC*)sectionForViewController:(BHCompositeTableViewController*)vc widgetClassName:(NSString*)widgetClass1 frc:(NSFetchedResultsController*)frc1 {
-    return [[[BHCompositeTableSectionFRC alloc] initWithViewController:vc widgetClassName:widgetClass1 frc:frc1 isHidden:NO] autorelease];
+    return [[BHCompositeTableSectionFRC alloc] initWithViewController:vc widgetClassName:widgetClass1 frc:frc1 isHidden:NO];
 }
 
 + (BHCompositeTableSectionFRC*)sectionForViewController:(BHCompositeTableViewController*)vc widgetClassName:(NSString*)widgetClass1 frc:(NSFetchedResultsController*)frc1 isHidden:(BOOL)isHidden {
-    return [[[BHCompositeTableSectionFRC alloc] initWithViewController:vc widgetClassName:widgetClass1 frc:frc1 isHidden:isHidden] autorelease];
+    return [[BHCompositeTableSectionFRC alloc] initWithViewController:vc widgetClassName:widgetClass1 frc:frc1 isHidden:isHidden];
 }
 
 - (id)initWithViewController:(BHCompositeTableViewController*)formVC1 widgetClassName:(NSString*)widgetClass1 frc:(NSFetchedResultsController*)frc1 isHidden:(BOOL)isHidden {
     
     if ((self = [super initWithViewController:formVC1 isHidden:isHidden])) {
         self.widgetClass = widgetClass1;
-        _frc = [frc1 retain];
+        _frc = frc1;
         self.frc.delegate = self;
         self.frcSourceSection = 0;
         self.forceFullReloadOnDataChange = NO;
@@ -44,8 +44,6 @@
 - (void)setFrc:(NSFetchedResultsController *)frc1 {
     
     if (_frc != frc1) {
-        [frc1 retain];
-        [_frc release];        
         _frc = frc1;
         _frc.delegate = self;
         [self reload];
@@ -86,7 +84,7 @@
 
 - (id)internalCellForRow:(NSInteger)row {
     
-    self.currentCell = [BHNIBTools cachedTableCellWithClass:self.widgetClass tableView:self.formVC.tableView isNewCell:&_currentCellIsNewCell];
+    self.currentCell = [BHBlockTableUtils cachedTableCellWithClass:self.widgetClass tableView:self.formVC.tableView isNewCell:&_currentCellIsNewCell];
     
     if (self.configureRow) {
         

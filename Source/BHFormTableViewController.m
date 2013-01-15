@@ -16,11 +16,6 @@
 
 @synthesize textFieldHelper = _tfHelper;
 
-- (void)dealloc {
-    [_tfHelper release];
-    [super dealloc];
-}
-
 - (BHTextFieldHelper*)textFieldHelper {
     
     if (!_tfHelper) {

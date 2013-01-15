@@ -7,7 +7,7 @@
 //
 
 #import "BHBlockTableViewController.h"
-#import "BHNIBTools.h"
+#import "BHBlockTableUtils.h"
 
 @interface BHBlockTableViewController ()
 
@@ -99,13 +99,13 @@
 
 - (UITableViewCell*)cachedCell:(NSString*)class isNewCell:(BOOL*)isNewCell {
     
-    UITableViewCell *cell = [BHNIBTools cachedTableCellWithClass:class owner:self tableView:self.tableView isNewCell:isNewCell];
+    UITableViewCell *cell = [BHBlockTableUtils cachedTableCellWithClass:class owner:self tableView:self.tableView isNewCell:isNewCell];
     return cell;
 }
 
 - (UITableViewCell*)cachedCell:(NSString*)class {
     
-    UITableViewCell *cell = [BHNIBTools cachedTableCellWithClass:class owner:self tableView:self.tableView isNewCell:nil];
+    UITableViewCell *cell = [BHBlockTableUtils cachedTableCellWithClass:class owner:self tableView:self.tableView isNewCell:nil];
     return cell;
 }
 

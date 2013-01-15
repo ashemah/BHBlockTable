@@ -34,10 +34,6 @@
     [self updateActiveSections];
 }
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 - (void)refreshForm {
     [self.tableView reloadData];
 }

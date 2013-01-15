@@ -7,7 +7,7 @@
 //
 
 #import "BHCompositeTableSectionBasic.h"
-#import "BHNIBTools.h"
+#import "BHBlockTableUtils.h"
 
 @implementation BHCompositeTableSectionBasic
 
@@ -18,11 +18,11 @@
 @synthesize didSwipeToDeleteRow;
 
 + (BHCompositeTableSectionBasic*)sectionForViewController:(BHCompositeTableViewController*)vc {
-    return [[[BHCompositeTableSectionBasic alloc] initWithViewController:vc isHidden:NO] autorelease];
+    return [[BHCompositeTableSectionBasic alloc] initWithViewController:vc isHidden:NO];
 }
 
 + (BHCompositeTableSectionBasic*)sectionForViewController:(BHCompositeTableViewController*)vc isHidden:(BOOL)isHidden {
-    return [[[BHCompositeTableSectionBasic alloc] initWithViewController:vc isHidden:isHidden] autorelease];
+    return [[BHCompositeTableSectionBasic alloc] initWithViewController:vc isHidden:isHidden];
 }
 
 - (id)initWithViewController:(BHFormTableViewController*)formVC1 isHidden:(BOOL)isHidden {
@@ -77,7 +77,7 @@
 - (id)internalCellForRow:(NSInteger)row {
     
     NSString *widgetClass = [self.fields objectAtIndex:row];    
-    self.currentCell = [BHNIBTools cachedTableCellWithClass:widgetClass tableView:self.formVC.tableView isNewCell:&_currentCellIsNewCell];
+    self.currentCell = [BHBlockTableUtils cachedTableCellWithClass:widgetClass tableView:self.formVC.tableView isNewCell:&_currentCellIsNewCell];
     self.currentRow = row;
     
     self.isFirstRow = row == 0;

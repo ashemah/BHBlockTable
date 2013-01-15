@@ -7,7 +7,7 @@
 //
 
 #import "BHCompositeTableSection.h"
-#import "BHNIBTools.h"
+#import "BHBlockTableUtils.h"
 
 @implementation BHCompositeTableSection
 
@@ -53,7 +53,7 @@
         
         if (self.emptyCellClass) {
             BOOL isNewCell;
-            self.emptyCell = [BHNIBTools cachedTableCellWithClass:self.emptyCellClass tableView:self.formVC.tableView isNewCell:&isNewCell];
+            self.emptyCell = [BHBlockTableUtils cachedTableCellWithClass:self.emptyCellClass tableView:self.formVC.tableView isNewCell:&isNewCell];
         }
         
         self.lastTappedRow = -1;
